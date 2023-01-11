@@ -1,6 +1,2 @@
-```diff
+## 0x0D-web_stack_debugging_0
 
-- Up and running code.
-- Author: Afolabi John Oluwaseun.
-
-```
