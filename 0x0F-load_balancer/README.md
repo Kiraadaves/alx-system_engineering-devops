@@ -1,6 +1,5 @@
 ## 0x0F. Load balancer
-
-# Tasks
+### This project involved doing the following;
 
 * **0. Double the number of webservers**
   * [0-custom_http_response_header](./0-custom_http_response_header): Bash
