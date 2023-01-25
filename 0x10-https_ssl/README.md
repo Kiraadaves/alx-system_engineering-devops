@@ -1,8 +1,48 @@
-## 0x03. AirBnB clone - Deploy static
+## 0x10. HTTPS SSL
 
-### Background Context
-Ever since you completed project 0x0F. Load balancer of the SysAdmin track, you’ve had 2 web servers + 1 load balancer but nothing to distribute with them.
+## 0. World wide web
+Configure your domain zone so that the subdomain www points to your load-balancer IP (lb-01). Let’s also add other subdomains to make our life easier, and write a Bash script that will display information about subdomains.
 
-It’s time to make your work public!
+Requirements:
 
-In this first deployment project, you will be deploying your web_static work. You will use Fabric (for Python3). Fabric is a Python library and command-line tool for streamlining the use of SSH for application deployment or systems administration tasks. It provides a basic suite of operations for executing local or remote shell commands (normally or via sudo) and uploading/downloading files, as well as auxiliary functionality such as prompting the running user for input, or aborting execution. This concept is important: execute commands locally or remotely. Locally means in your laptop (physical laptop or inside your Vagrant), and Remotely means on your server(s). Fabric is taking care of all network connections (SSH, SCP etc.), it’s an easy tool for transferring, executing, etc. commands from locale to a remote server.
+Add the subdomain www to your domain, point it to your lb-01 IP (your domain name might be configured with default subdomains, feel free to remove them)
+Add the subdomain lb-01 to your domain, point it to your lb-01 IP
+Add the subdomain web-01 to your domain, point it to your web-01 IP
+Add the subdomain web-02 to your domain, point it to your web-02 IP
+Your Bash script must accept 2 arguments:
+domain:
+type: string
+what: domain name to audit
+mandatory: yes
+subdomain:
+type: string
+what: specific subdomain to audit
+mandatory: no
+Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+When only the parameter domain is provided, display information for its subdomains www, lb-01, web-01 and web-02 - in this specific order
+When passing domain and subdomain parameters, display information for the specified subdomain
+Ignore shellcheck case SC2086
+Must use:
+awk
+at least one Bash function
+You do not need to handle edge cases such as:
+Empty parameters
+Nonexistent domain names
+Nonexistent subdomains
+
+
+## HAproxy SSL termination
+“Terminating SSL on HAproxy” means that HAproxy is configured to handle encrypted traffic, unencrypt it and pass it on to its destination.
+
+Create a certificate using certbot and configure HAproxy to accept encrypted traffic for your subdomain www..
+
+Requirements:
+
+HAproxy must be listening on port TCP 443
+HAproxy must be accepting SSL traffic
+HAproxy must serve encrypted traffic that will return the / of your web server
+When querying the root of your domain name, the page returned must contain Holberton School
+Share your HAproxy config as an answer file (/etc/haproxy/haproxy.cfg)
+The file 1-haproxy_ssl_termination must be your HAproxy configuration file
+
+Make sure to install HAproxy 1.5 or higher, SSL termination is not available before v1.5.
