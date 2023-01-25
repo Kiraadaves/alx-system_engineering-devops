@@ -1,7 +1,3 @@
-```diff
+# Attack is the best defense
 
-+ Done with the sniflling.
-+ Author:
-+ Afolabi John Oluwaseun
 
-```
